@@ -609,25 +609,24 @@ def main():
     # SECTION 6 – Downloads
     # =====================
     # =====================
-# SECTION 6 – Downloads
-# =====================
-st.subheader("6. Downloads")
 
-st.caption("All customers scored with churn probability, risk tier, and recommended action.")
-full_csv = convert_df(features.drop(columns=["priority_score"], errors="ignore"))
-st.download_button("📥 Download Full Scored Customer List (CSV)", full_csv,
-                   file_name="full_scored_customers.csv", mime="text/csv")
+    st.subheader("6. Downloads")
 
-st.caption("High Risk customers with revenue ≥ £500 only — your Monday morning action list.")
-priority_df = features[(features["risk_tier"] == "High Risk") & (features["monetary"] >= 500)]
-priority_csv = convert_df(priority_df)
-st.download_button("📥 Download Priority Action List (CSV)", priority_csv,
-                   file_name="priority_action_list.csv", mime="text/csv")
+    st.caption("All customers scored with churn probability, risk tier, and recommended action.")
+    full_csv = convert_df(features.drop(columns=["priority_score"], errors="ignore"))
+    st.download_button("📥 Download Full Scored Customer List (CSV)", full_csv,
+                       file_name="full_scored_customers.csv", mime="text/csv")
 
-st.caption("Complete raw transaction history across all monthly uploads — use this every 6 months to retrain the model.")
-master_csv = convert_df(master)
-st.download_button("📥 Download Master Transactions Database (CSV)", master_csv,
-                   file_name="master_transactions.csv", mime="text/csv")
+    st.caption("High Risk customers with revenue ≥ £500 only — your Monday morning action list.")
+    priority_df = features[(features["risk_tier"] == "High Risk") & (features["monetary"] >= 500)]
+    priority_csv = convert_df(priority_df)
+    st.download_button("📥 Download Priority Action List (CSV)", priority_csv,
+                       file_name="priority_action_list.csv", mime="text/csv")
+
+    st.caption("Complete raw transaction history across all monthly uploads — use this every 6 months to retrain the model.")
+    master_csv = convert_df(master)
+    st.download_button("📥 Download Master Transactions Database (CSV)", master_csv,
+                       file_name="master_transactions.csv", mime="text/csv")
 
 if __name__ == "__main__":
     main()
